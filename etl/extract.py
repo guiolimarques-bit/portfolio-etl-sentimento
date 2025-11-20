@@ -33,7 +33,7 @@ def generate_reviews(df_products, num_reviews=300):
     
     positive_reviews = ["Produto excelente!", "Qualidade superior.", "Recomendo a todos!"]
     negative_reviews = [
-        "Quebrou rápido. This is TERRIBLE.", # <--- TESTE DE DIAGNÓSTICO
+        "Quebrou rápido. This is TERRIBLE.", 
         "Muito decepcionante.",
         "Não vale o preço.",
     ]
