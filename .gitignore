@@ -1,0 +1,10 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.env
+
+# Data Files (Arquivos que podem ser grandes ou são gerados automaticamente)
+data/processed/*.sqlite  
+data/processed/transformed_data.csv
+data/raw/
