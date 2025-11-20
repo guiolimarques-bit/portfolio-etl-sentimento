@@ -30,9 +30,12 @@ def analyze_sentiment(df_reviews):
         return SIA.polarity_scores(text)['compound'] if pd.notna(text) else 0.0
     
     def classify_sentiment(score):
-        if score >= 0.05: return 'Positivo'
-        elif score <= -0.05: return 'Negativo'
-        else: return 'Neutro'
+        if score > 0.1:        # Pontuações acima de 0.1 são Positivas
+            return 'Positivo'
+        elif score < -0.001:   # Qualquer pontuação levemente negativa (abaixo de -0.001) é Negativa
+            return 'Negativo'
+        else:
+            return 'Neutro'    # Pontuações muito próximas de zero
             
     df_reviews['sentiment_score'] = df_reviews['review_text'].apply(get_sentiment_score)
     df_reviews['sentiment_class'] = df_reviews['sentiment_score'].apply(classify_sentiment)

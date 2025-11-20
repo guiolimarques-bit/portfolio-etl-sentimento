@@ -4,7 +4,7 @@ import random
 from datetime import datetime, timedelta
 
 def extract_api_data(num_records=50):
-    """Extrai metadados de produtos simulados da API e retorna DataFrame."""
+    """Extrai metadados de produtos simulados de uma API e retorna um DataFrame."""
     url = f"https://randomuser.me/api/?results={num_records}&inc=name,location,dob,login"
     try:
         response = requests.get(url)
@@ -28,11 +28,15 @@ def extract_api_data(num_records=50):
         print(f"Erro na extração da API: {e}")
         return pd.DataFrame()
 
-def generate_reviews(df_products, num_reviews=300): # <-- CORRIGIDO AQUI!
-    """Gera avaliações simuladas e associa aos IDs de produtos, retornando DataFrame."""
+def generate_reviews(df_products, num_reviews=300):
+    """Gera avaliações simuladas e as associa aos IDs de produtos, retornando um DataFrame."""
     
     positive_reviews = ["Produto excelente!", "Qualidade superior.", "Recomendo a todos!"]
-    negative_reviews = ["Quebrou rápido.", "Muito decepcionante.", "Não vale o preço."]
+    negative_reviews = [
+        "Quebrou rápido. This is TERRIBLE.", # <--- TESTE DE DIAGNÓSTICO
+        "Muito decepcionante.",
+        "Não vale o preço.",
+    ]
     neutral_reviews = ["É ok, está na média.", "Funcional, mas simples."]
     all_reviews = positive_reviews + negative_reviews + neutral_reviews
     
@@ -40,7 +44,7 @@ def generate_reviews(df_products, num_reviews=300): # <-- CORRIGIDO AQUI!
     end_date = datetime.now()
     product_ids = df_products['product_id'].tolist()
     
-    for _ in range(num_reviews): # <-- Usa o argumento
+    for _ in range(num_reviews):
         product_id = random.choice(product_ids)
         review_text = random.choice(all_reviews)
         
@@ -60,4 +64,4 @@ def generate_reviews(df_products, num_reviews=300): # <-- CORRIGIDO AQUI!
         })
 
     df = pd.DataFrame(reviews)
-    return df
+    return df 
