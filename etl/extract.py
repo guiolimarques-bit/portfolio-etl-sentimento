@@ -21,7 +21,7 @@ def extract_api_data(num_records=50):
         days_between_dates = time_between_dates.days
         
         for item in data:
-            # Gerar uma data aleatória que está no período 2018-2022
+            # Gerar uma data aleatória 
             random_number_of_days = random.randrange(days_between_dates)
             random_launch_date = start_date + timedelta(days=random_number_of_days)
 
@@ -67,7 +67,7 @@ def generate_reviews(df_products, num_reviews=300):
         product_id = random.choice(product_ids)
         review_text = random.choice(all_reviews)
         
-        # Seleciona um dia aleatório dentro do intervalo de anos (2021-2025)
+        # Seleciona um dia aleatório dentro do intervalo de anos 
         random_days = random.randint(0, days_range)
         review_date = (start_review_date + timedelta(days=random_days)).strftime('%Y-%m-%d')
         

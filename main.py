@@ -29,7 +29,7 @@ def run_pipeline():
 
     print("\n--- 2. ETAPA T (TRANSFORMAÇÃO) ---")
     
-    # T: Roda a limpeza, Análise de Sentimento (NLTK) e Modelagem
+    # T: limpeza, Análise de Sentimento (NLTK) e Modelagem
     df_final = run_transformations(df_products, df_reviews)
     
     # T: Salva o resultado transformado
